@@ -1,504 +1,2770 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080611">
-<title>DARKVURS Client | Own the Void</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080610">
+  <meta name="description" content="DARKVURS Client — an independent Minecraft Bedrock project focused on custom visuals, interface design, and a distinctive client experience.">
+  <meta property="og:title" content="DARKVURS Client — Own the Void">
+  <meta property="og:description" content="Explore the DARKVURS Bedrock project, feature concepts, cosmetic collections, and official release information.">
+  <title>DARKVURS Client — Own the Void</title>
 
-<style>
-:root {
-    --bg: #080611;
-    --panel: #130d20;
-    --purple: #9b55ff;
-    --light: #c49aff;
-    --text: #f5efff;
-    --muted: #aaa0ba;
-    --border: #342047;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background:
-        radial-gradient(ellipse at 75% 0%, #351653 0%, transparent 38%),
-        var(--bg);
-    color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.container {
-    width: min(1120px, 90%);
-    margin: auto;
-}
-
-/* NAVIGATION */
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(8, 6, 17, .92);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid #ffffff12;
-}
-
-.navbar {
-    min-height: 76px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.logo {
-    font-size: 23px;
-    font-weight: 950;
-    letter-spacing: 3px;
-}
-
-.logo span {
-    color: var(--purple);
-}
-
-nav {
-    display: flex;
-    gap: 28px;
-    font-size: 14px;
-    color: var(--muted);
-}
-
-nav a:hover {
-    color: white;
-}
-
-.nav-button,
-.button {
-    padding: 11px 18px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 14px;
-    display: inline-block;
-    transition: .2s;
-}
-
-.nav-button:hover,
-.button:hover {
-    border-color: var(--purple);
-    transform: translateY(-2px);
-}
-
-.primary {
-    background: linear-gradient(120deg, #a65cff, #7135cb);
-    border: none;
-    color: white;
-    box-shadow: 0 8px 28px #8a40e944;
-}
-
-/* HERO */
-
-.hero {
-    min-height: 610px;
-    display: flex;
-    align-items: center;
-    padding: 100px 0;
-}
-
-.eyebrow {
-    color: var(--light);
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-}
-
-.hero h1 {
-    font-size: clamp(53px, 9vw, 95px);
-    line-height: .98;
-    letter-spacing: -5px;
-    margin: 20px 0;
-}
-
-.hero h1 span {
-    color: var(--purple);
-}
-
-.hero p {
-    color: var(--muted);
-    font-size: 18px;
-    max-width: 620px;
-}
-
-.actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 13px;
-    margin-top: 30px;
-}
-
-.hero-status {
-    color: #9386a5;
-    font-size: 12px;
-    letter-spacing: 2px;
-    margin-top: 35px;
-}
-
-/* SECTIONS */
-
-section {
-    padding: 85px 0;
-    border-top: 1px solid #ffffff12;
-}
-
-.section-title {
-    font-size: clamp(32px, 5vw, 48px);
-    letter-spacing: -2px;
-    margin: 10px 0;
-}
-
-.description {
-    color: var(--muted);
-    max-width: 650px;
-}
-
-/* FEATURES */
-
-.features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-top: 35px;
-}
-
-.feature {
-    background: linear-gradient(145deg, #191126, #0f0b18);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 27px;
-    min-height: 190px;
-    transition: .25s;
-}
-
-.feature:hover {
-    transform: translateY(-5px);
-    border-color: var(--purple);
-}
-
-.feature-number {
-    color: var(--purple);
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.feature h3 {
-    margin: 16px 0 8px;
-    font-size: 20px;
-}
-
-.feature p {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-/* DOWNLOADS + SERVER */
-
-.panel {
-    margin-top: 28px;
-    padding: 32px;
-    background: linear-gradient(120deg, #241437, #120c1c);
-    border: 1px solid #523273;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 22px;
-}
-
-.panel p {
-    color: var(--muted);
-    margin-top: 6px;
-}
-
-.coming-soon {
-    color: var(--light);
-    font-weight: 900;
-    letter-spacing: 2px;
-    white-space: nowrap;
-}
-
-/* FAQ */
-
-.faq-item {
-    padding: 22px 0;
-    border-top: 1px solid var(--border);
-}
-
-.faq-item p {
-    color: var(--muted);
-    margin-top: 7px;
-}
-
-/* FOOTER */
-
-footer {
-    border-top: 1px solid #ffffff12;
-    padding: 30px 0;
-    color: #9489a2;
-    font-size: 13px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-/* MOBILE */
-
-@media (max-width: 750px) {
-    nav {
-        display: none;
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080610;
+      --bg-soft: #0d0915;
+      --panel: #110c1b;
+      --panel-2: #171023;
+      --panel-3: #20132f;
+      --purple: #a970ff;
+      --purple-2: #7c3fe2;
+      --purple-soft: #c6a2ff;
+      --text: #f7f2ff;
+      --muted: #aaa0bb;
+      --muted-2: #766b87;
+      --line: rgba(196, 160, 255, .16);
+      --line-strong: rgba(196, 160, 255, .3);
+      --green: #8ee6bb;
+      --amber: #ffd28b;
+      --red: #ff9eae;
+      --radius: 18px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, .36);
+      --max: 1180px;
     }
 
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 82% -8%, rgba(111, 49, 171, .30), transparent 34%),
+        radial-gradient(ellipse at 0% 42%, rgba(66, 30, 105, .15), transparent 32%),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      pointer-events: none;
+      opacity: .17;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid var(--purple-soft);
+      outline-offset: 4px;
+    }
+
+    ::selection { color: white; background: #7040b8; }
+
+    .container {
+      width: min(var(--max), calc(100% - 44px));
+      margin-inline: auto;
+    }
+
+    .section {
+      position: relative;
+      padding: 108px 0;
+      border-top: 1px solid rgba(255,255,255,.065);
+    }
+
+    .section-tight { padding: 76px 0; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--purple-soft);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 20px;
+      height: 1px;
+      content: "";
+      background: var(--purple);
+      box-shadow: 0 0 12px var(--purple);
+    }
+
+    .section-heading {
+      max-width: 730px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+      margin: 12px 0;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.04;
+      letter-spacing: -.055em;
+    }
+
+    .section-heading p {
+      max-width: 650px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .gradient-text {
+      color: var(--purple-soft);
+      background: linear-gradient(100deg, #f4eaff 0%, #bd8cff 46%, #7c4ae0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .muted { color: var(--muted); }
+    .tiny { color: var(--muted-2); font-size: 12px; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.025);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 10px currentColor;
+    }
+
+    .pill.planned .pill-dot { background: var(--amber); }
+    .pill.concept .pill-dot { background: var(--purple); }
+    .pill.available .pill-dot { background: var(--green); }
+
+    .btn {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 18px;
+      border: 1px solid var(--line-strong);
+      border-radius: 10px;
+      color: var(--text);
+      background: rgba(255,255,255,.035);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .015em;
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease,
+        background .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--purple);
+      background: rgba(169,112,255,.09);
+    }
+
+    .btn-primary {
+      border-color: transparent;
+      background: linear-gradient(115deg, #a65eff, #7339d0);
+      box-shadow: 0 10px 30px rgba(126,62,220,.25);
+    }
+
+    .btn-primary:hover {
+      border-color: transparent;
+      background: linear-gradient(115deg, #b77aff, #8249e3);
+      box-shadow: 0 12px 36px rgba(126,62,220,.38);
+    }
+
+    .btn-small {
+      min-height: 37px;
+      padding-inline: 13px;
+      font-size: 11px;
+    }
+
+    .btn:disabled {
+      opacity: .58;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Header */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(8,6,16,.82);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-wrap {
+      display: flex;
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      flex: 0 0 auto;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 37px;
+      height: 37px;
+      place-items: center;
+      border: 1px solid rgba(190,145,255,.48);
+      border-radius: 11px;
+      color: #fff;
+      background: linear-gradient(145deg, #472369, #171020);
+      box-shadow: inset 0 0 18px rgba(183,126,255,.16),
+        0 0 22px rgba(143,79,224,.16);
+      font-size: 15px;
+      font-weight: 950;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 950;
+      letter-spacing: .17em;
+    }
+
+    .brand-name span { color: var(--purple); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      color: #b9afc8;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav-links a { transition: color .18s ease; }
+    .nav-links a:hover { color: white; }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    /* Hero */
+
     .hero {
-        min-height: 0;
-        padding: 100px 0;
+      position: relative;
+      min-height: 680px;
+      display: grid;
+      align-items: center;
+      padding: 82px 0 105px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-kicker {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
     }
 
     .hero h1 {
-        letter-spacing: -3px;
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(4rem, 9vw, 7.7rem);
+      line-height: .86;
+      letter-spacing: -.085em;
+      font-weight: 1000;
     }
 
-    .features {
-        grid-template-columns: 1fr;
+    .hero h1 .line-two {
+      display: block;
+      margin-top: 13px;
     }
 
-    .panel {
-        align-items: flex-start;
-        flex-direction: column;
+    .hero-subtitle {
+      max-width: 580px;
+      margin: 28px 0 0;
+      color: #b7acc7;
+      font-size: clamp(15px, 1.7vw, 18px);
     }
-}
-</style>
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      margin-top: 35px;
+      color: var(--muted-2);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-meta span::before {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      content: "";
+      background: var(--purple);
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 460px;
+      display: grid;
+      place-items: center;
+      perspective: 900px;
+    }
+
+    .orb-glow {
+      position: absolute;
+      width: 370px;
+      height: 370px;
+      border-radius: 50%;
+      background: #803bca;
+      filter: blur(100px);
+      opacity: .23;
+    }
+
+    .orb {
+      position: relative;
+      width: min(390px, 80vw);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(214,179,255,.3);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 36% 27%, rgba(210,170,255,.25), transparent 22%),
+        radial-gradient(circle at 50% 50%, #32164b 0%, #170e24 43%, #0b0812 72%);
+      box-shadow: inset 0 0 70px rgba(159,89,241,.16),
+        0 0 90px rgba(128,57,197,.16);
+      transform: rotateX(13deg) rotateY(-18deg);
+    }
+
+    .orb::before,
+    .orb::after {
+      position: absolute;
+      inset: 10%;
+      border: 1px solid rgba(210,174,255,.17);
+      border-radius: 50%;
+      content: "";
+      transform: rotate(-32deg) scaleX(1.28);
+    }
+
+    .orb::after {
+      inset: 20%;
+      border-color: rgba(210,174,255,.11);
+      transform: rotate(45deg) scaleX(1.35);
+    }
+
+    .orb-core {
+      display: grid;
+      width: 48%;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid rgba(226,202,255,.42);
+      border-radius: 28%;
+      color: #fff;
+      background: linear-gradient(145deg, rgba(188,127,255,.46), rgba(65,28,99,.75));
+      box-shadow: 0 0 50px rgba(171,104,255,.32),
+        inset 0 0 35px rgba(245,224,255,.12);
+      font-size: clamp(50px, 8vw, 86px);
+      font-weight: 1000;
+      letter-spacing: -.12em;
+      transform: rotate(-12deg);
+    }
+
+    .float-card {
+      position: absolute;
+      z-index: 3;
+      min-width: 155px;
+      padding: 13px 15px;
+      border: 1px solid var(--line-strong);
+      border-radius: 13px;
+      background: rgba(16,11,25,.88);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .float-card strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .float-card small {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .float-card.one { top: 14%; right: -1%; }
+    .float-card.two { bottom: 13%; left: -1%; }
+
+    .float-icon {
+      display: inline-grid;
+      width: 24px;
+      height: 24px;
+      place-items: center;
+      margin-right: 7px;
+      border-radius: 7px;
+      color: var(--purple-soft);
+      background: rgba(169,112,255,.13);
+    }
+
+    .hero-bottom {
+      position: absolute;
+      right: 0;
+      bottom: 23px;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted-2);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    /* Marquee */
+
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(169,112,255,.035);
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      gap: 42px;
+      padding: 14px 0;
+      color: #c7b6db;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .ticker-track span::after {
+      content: "✦";
+      margin-left: 42px;
+      color: var(--purple);
+    }
+
+    /* Cards and grids */
+
+    .grid { display: grid; gap: 17px; }
+    .feature-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .feature-card,
+    .info-card,
+    .roadmap-card,
+    .community-card {
+      position: relative;
+      overflow: hidden;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(27,18,42,.95), rgba(13,10,21,.95));
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .feature-card:hover,
+    .info-card:hover,
+    .roadmap-card:hover,
+    .community-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(183,130,255,.48);
+    }
+
+    .feature-card::after {
+      position: absolute;
+      top: -65px;
+      right: -60px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      content: "";
+      background: rgba(151,83,223,.12);
+      filter: blur(35px);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .feature-icon {
+      display: grid;
+      width: 43px;
+      height: 43px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--purple-soft);
+      background: rgba(169,112,255,.09);
+      font-size: 19px;
+    }
+
+    .card-index {
+      color: #6f607e;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .15em;
+    }
+
+    .feature-card h3,
+    .info-card h3,
+    .community-card h3 {
+      margin: 20px 0 8px;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+
+    .feature-card p,
+    .info-card p,
+    .community-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .feature-card .pill { margin-top: 20px; }
+
+    /* Client preview */
+
+    .preview-layout {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .preview-copy h2 {
+      margin: 12px 0;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.04;
+      letter-spacing: -.055em;
+    }
+
+    .preview-copy > p { color: var(--muted); }
+
+    .check-list {
+      display: grid;
+      gap: 12px;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      color: #d6cce1;
+      font-size: 13px;
+    }
+
+    .check {
+      display: grid;
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      place-items: center;
+      border: 1px solid rgba(142,230,187,.28);
+      border-radius: 6px;
+      color: var(--green);
+      background: rgba(142,230,187,.08);
+      font-size: 11px;
+    }
+
+    .mock-window {
+      overflow: hidden;
+      border: 1px solid rgba(191,150,255,.35);
+      border-radius: 19px;
+      background: #0c0913;
+      box-shadow: 0 35px 90px rgba(0,0,0,.38),
+        0 0 65px rgba(119,59,185,.13);
+      transform: rotateY(-5deg) rotateX(2deg);
+    }
+
+    .mock-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 17px;
+      border-bottom: 1px solid var(--line);
+      background: #151020;
+    }
+
+    .mock-dots { display: flex; gap: 5px; }
+
+    .mock-dots i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #6b587e;
+    }
+
+    .mock-title {
+      color: #c9b4e7;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .2em;
+    }
+
+    .mock-body {
+      display: grid;
+      min-height: 315px;
+      grid-template-columns: 142px 1fr;
+    }
+
+    .mock-sidebar {
+      padding: 19px 12px;
+      border-right: 1px solid var(--line);
+      background: #100c18;
+    }
+
+    .mock-side-label {
+      margin: 4px 8px 12px;
+      color: #766987;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .15em;
+    }
+
+    .mock-nav-item {
+      margin-bottom: 5px;
+      padding: 9px 10px;
+      border-radius: 7px;
+      color: #9f94ae;
+      font-size: 10px;
+    }
+
+    .mock-nav-item.active {
+      color: white;
+      background: linear-gradient(90deg, rgba(146,83,220,.34), rgba(146,83,220,.08));
+    }
+
+    .mock-content { padding: 22px; }
+
+    .mock-content h3 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -.04em;
+    }
+
+    .mock-content > p {
+      margin: 5px 0 17px;
+      color: #887c98;
+      font-size: 10px;
+    }
+
+    .mock-feature {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #151020;
+    }
+
+    .mock-feature strong {
+      display: block;
+      font-size: 10px;
+    }
+
+    .mock-feature small {
+      color: #887c98;
+      font-size: 8px;
+    }
+
+    .switch {
+      width: 29px;
+      height: 16px;
+      padding: 2px;
+      border-radius: 99px;
+      background: #654098;
+    }
+
+    .switch::after {
+      display: block;
+      width: 12px;
+      height: 12px;
+      margin-left: 13px;
+      border-radius: 50%;
+      content: "";
+      background: white;
+    }
+
+    .mock-note {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px dashed rgba(177,128,245,.3);
+      border-radius: 8px;
+      color: #a996bf;
+      font-size: 9px;
+    }
+
+    /* Cosmetics store */
+
+    .store-shell {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(140deg, rgba(23,15,36,.96), rgba(11,8,17,.98));
+      box-shadow: var(--shadow);
+    }
+
+    .store-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .store-bar h3 { margin: 0; font-size: 19px; }
+
+    .store-bar p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .filter-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .filter-btn {
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: transparent;
+      font-size: 10px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: rgba(180,128,255,.55);
+      color: white;
+      background: rgba(169,112,255,.12);
+    }
+
+    .cosmetic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .cosmetic-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #100c19;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .cosmetic-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(185,135,255,.48);
+    }
+
+    .cosmetic-card[hidden] { display: none; }
+
+    .cosmetic-art {
+      position: relative;
+      min-height: 150px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 55%, rgba(161,93,230,.3), transparent 58%),
+        linear-gradient(145deg, #241332, #100b18);
+    }
+
+    .cosmetic-art::before {
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(224,195,255,.11);
+      border-radius: 12px;
+      content: "";
+      transform: rotate(-8deg);
+    }
+
+    .cosmetic-symbol {
+      position: relative;
+      display: grid;
+      width: 80px;
+      height: 80px;
+      place-items: center;
+      border: 1px solid rgba(226,199,255,.43);
+      border-radius: 24px;
+      color: white;
+      background: linear-gradient(145deg, rgba(178,119,255,.58), rgba(67,32,101,.82));
+      box-shadow: 0 0 45px rgba(169,112,255,.28),
+        inset 0 0 25px rgba(255,255,255,.1);
+      font-size: 29px;
+      font-weight: 900;
+      transform: rotate(-9deg);
+    }
+
+    .cosmetic-card:nth-child(2) .cosmetic-art {
+      background:
+        radial-gradient(circle at 50% 55%, rgba(64,165,190,.3), transparent 58%),
+        linear-gradient(145deg, #102936, #0d101b);
+    }
+
+    .cosmetic-card:nth-child(2) .cosmetic-symbol {
+      border-color: rgba(130,228,244,.5);
+      background: linear-gradient(145deg, #398ba1, #102d40);
+    }
+
+    .cosmetic-card:nth-child(3) .cosmetic-art {
+      background:
+        radial-gradient(circle at 50% 55%, rgba(220,95,132,.3), transparent 58%),
+        linear-gradient(145deg, #331527, #130b18);
+    }
+
+    .cosmetic-card:nth-child(3) .cosmetic-symbol {
+      border-color: rgba(255,157,187,.45);
+      background: linear-gradient(145deg, #a94370, #40172f);
+    }
+
+    .cosmetic-card:nth-child(4) .cosmetic-art {
+      background:
+        radial-gradient(circle at 50% 55%, rgba(226,177,89,.25), transparent 58%),
+        linear-gradient(145deg, #302312, #110e16);
+    }
+
+    .cosmetic-card:nth-child(4) .cosmetic-symbol {
+      border-color: rgba(255,217,150,.45);
+      background: linear-gradient(145deg, #9b7135, #463017);
+    }
+
+    .cosmetic-info { padding: 15px; }
+
+    .cosmetic-category {
+      color: var(--purple-soft);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .cosmetic-info h4 {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .cosmetic-info p {
+      min-height: 38px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    .cosmetic-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 13px;
+    }
+
+    .concept-label {
+      color: var(--amber);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .store-disclaimer {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 18px;
+      padding: 13px 15px;
+      border: 1px solid rgba(255,210,139,.18);
+      border-radius: 10px;
+      color: #c9b99f;
+      background: rgba(255,210,139,.045);
+      font-size: 11px;
+    }
+
+    .store-disclaimer b { color: var(--amber); }
+
+    /* Download */
+
+    .download-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 25px;
+      overflow: hidden;
+      padding: 34px;
+      border: 1px solid rgba(184,130,255,.38);
+      border-radius: 21px;
+      background:
+        radial-gradient(circle at 95% 10%, rgba(143,77,220,.25), transparent 30%),
+        linear-gradient(120deg, #211332, #100c19 72%);
+    }
+
+    .download-panel h3 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -.04em;
+    }
+
+    .download-panel p {
+      max-width: 650px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .download-status {
+      min-width: 155px;
+      padding: 13px 16px;
+      border: 1px solid rgba(255,210,139,.28);
+      border-radius: 11px;
+      color: var(--amber);
+      background: rgba(255,210,139,.06);
+      text-align: center;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .13em;
+    }
+
+    .download-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 21px;
+    }
+
+    .release-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 17px;
+    }
+
+    .meta-box {
+      padding: 13px 15px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .meta-box span {
+      display: block;
+      color: var(--muted-2);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .meta-box strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+    }
+
+    /* Roadmap */
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+    }
+
+    .roadmap-card { min-height: 200px; }
+
+    .roadmap-step {
+      color: var(--purple-soft);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .18em;
+    }
+
+    .roadmap-card h3 {
+      margin: 15px 0 7px;
+      font-size: 17px;
+    }
+
+    .roadmap-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Community */
+
+    .community-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .community-card {
+      display: flex;
+      min-height: 190px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .community-card .btn { margin-top: auto; }
+    .community-card .pill { margin-top: 15px; }
+    .community-card h3 { margin-top: 15px; }
+    .community-card p { margin-bottom: 20px; }
+
+    .community-card.primary-card {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(150,87,225,.22), transparent 40%),
+        linear-gradient(140deg, #211333, #100b19);
+    }
+
+    /* FAQ */
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      align-items: start;
+      gap: 40px;
+    }
+
+    .faq-aside {
+      position: sticky;
+      top: 110px;
+    }
+
+    .faq-aside h2 {
+      margin: 12px 0;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+    }
+
+    .faq-aside p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .faq-search-wrap {
+      position: relative;
+      margin-top: 22px;
+    }
+
+    .faq-search-wrap span {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      color: var(--muted-2);
+      transform: translateY(-50%);
+    }
+
+    .faq-search {
+      width: 100%;
+      min-height: 46px;
+      padding: 0 13px 0 40px;
+      border: 1px solid var(--line-strong);
+      border-radius: 10px;
+      color: white;
+      background: rgba(255,255,255,.035);
+      outline: none;
+      font-size: 12px;
+    }
+
+    .faq-search:focus { border-color: var(--purple); }
+
+    .faq-groups {
+      display: grid;
+      gap: 25px;
+    }
+
+    .faq-group-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 9px;
+      color: var(--purple-soft);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .faq-group-title::after {
+      height: 1px;
+      flex: 1;
+      content: "";
+      background: var(--line);
+    }
+
+    .faq-item { border-top: 1px solid var(--line); }
+    .faq-item:last-child { border-bottom: 1px solid var(--line); }
+    .faq-item[hidden], .faq-group[hidden] { display: none; }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 17px 3px;
+      cursor: pointer;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      width: 23px;
+      height: 23px;
+      flex: 0 0 23px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: var(--purple-soft);
+      content: "+";
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+      background: rgba(169,112,255,.1);
+    }
+
+    .faq-item summary:hover { color: var(--purple-soft); }
+
+    .faq-answer {
+      max-width: 760px;
+      padding: 0 42px 18px 3px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .faq-answer a {
+      color: var(--purple-soft);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .no-results {
+      display: none;
+      padding: 25px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 12px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .no-results.show { display: block; }
+
+    /* Footer */
+
+    .footer {
+      padding: 55px 0 25px;
+      border-top: 1px solid var(--line);
+      background: rgba(5,4,10,.55);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 35px;
+      padding-bottom: 40px;
+    }
+
+    .footer-brand p {
+      max-width: 330px;
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-col h4 {
+      margin: 0 0 13px;
+      color: #e8dcf7;
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .footer-col a {
+      display: block;
+      width: fit-content;
+      margin: 8px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-col a:hover { color: white; }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      color: var(--muted-2);
+      font-size: 10px;
+    }
+
+    .disclaimer {
+      max-width: 760px;
+      margin-top: 14px;
+      color: #746a80;
+      font-size: 10px;
+    }
+
+    /* Modal and toast */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(3,2,7,.78);
+      backdrop-filter: blur(9px);
+    }
+
+    .modal-backdrop.open { display: grid; }
+
+    .modal {
+      position: relative;
+      width: min(460px, 100%);
+      padding: 25px;
+      border: 1px solid var(--line-strong);
+      border-radius: 18px;
+      background: #130d1e;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .modal-art {
+      display: grid;
+      height: 145px;
+      place-items: center;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: radial-gradient(circle, rgba(169,112,255,.22), transparent 70%), #0c0812;
+    }
+
+    .modal-art span {
+      color: var(--purple-soft);
+      font-size: 55px;
+      font-weight: 950;
+    }
+
+    .modal h3 { margin: 5px 0; font-size: 22px; }
+    .modal p { color: var(--muted); font-size: 13px; }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 120;
+      max-width: min(390px, calc(100% - 40px));
+      padding: 13px 17px;
+      border: 1px solid var(--line-strong);
+      border-radius: 11px;
+      color: white;
+      background: #1a1127;
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: .22s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 950px) {
+      .nav-links { gap: 15px; }
+      .hero-grid { grid-template-columns: 1fr .8fr; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .cosmetic-grid { grid-template-columns: repeat(2, 1fr); }
+      .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(var(--max), calc(100% - 32px)); }
+      .nav-wrap { min-height: 68px; }
+      .nav-actions .btn { display: none; }
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        right: 16px;
+        left: 16px;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px;
+        border: 1px solid var(--line-strong);
+        border-radius: 13px;
+        background: rgba(13,9,21,.98);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open { display: grid; }
+
+      .nav-links a {
+        padding: 12px;
+        border-radius: 8px;
+      }
+
+      .nav-links a:hover { background: rgba(169,112,255,.09); }
+      .hero { min-height: auto; padding: 80px 0 65px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 5px; }
+      .hero h1 { font-size: clamp(4.2rem, 18vw, 7rem); }
+      .hero-art { min-height: 350px; }
+      .orb { width: min(310px, 74vw); }
+      .float-card.one { right: 2%; }
+      .float-card.two { left: 2%; }
+      .hero-bottom { position: static; margin-top: 10px; }
+      .section { padding: 78px 0; }
+      .preview-layout, .faq-layout { grid-template-columns: 1fr; gap: 30px; }
+      .faq-aside { position: static; }
+      .mock-window { transform: none; }
+      .download-panel { grid-template-columns: 1fr; }
+      .download-status { width: fit-content; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 520px) {
+      .brand-name { font-size: 14px; }
+      .hero h1 { letter-spacing: -.075em; }
+      .hero-art { min-height: 300px; }
+      .float-card { min-width: 130px; padding: 10px; }
+      .float-card.one { top: 6%; }
+      .float-card.two { bottom: 5%; }
+      .feature-grid, .community-grid, .roadmap-grid { grid-template-columns: 1fr; }
+      .cosmetic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+      .cosmetic-art { min-height: 120px; }
+      .cosmetic-symbol { width: 65px; height: 65px; font-size: 23px; }
+      .cosmetic-info { padding: 11px; }
+      .cosmetic-info h4 { font-size: 12px; }
+      .cosmetic-info p { font-size: 9px; }
+      .cosmetic-foot { align-items: flex-start; flex-direction: column; }
+      .store-shell { padding: 14px; }
+      .release-meta { grid-template-columns: 1fr; }
+      .mock-body { grid-template-columns: 103px 1fr; }
+      .mock-sidebar { padding: 14px 7px; }
+      .mock-content { padding: 15px 11px; }
+      .mock-content h3 { font-size: 17px; }
+      .mock-feature { padding: 9px; }
+      .mock-feature strong { font-size: 9px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 22px; }
+      .section-heading h2 { letter-spacing: -.045em; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-    <div class="container navbar">
-        <a class="logo" href="#">DARK<span>VURS</span></a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="DARKVURS home">
+        <span class="brand-mark">D</span>
+        <span class="brand-name">DARK<span>VURS</span></span>
+      </a>
 
-        <nav>
-            <a href="#features">Features</a>
-            <a href="#downloads">Downloads</a>
-            <a href="#server">Server</a>
-            <a href="#faq">FAQ</a>
-        </nav>
+      <nav class="nav-links" id="siteNav" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#client">Client</a>
+        <a href="#cosmetics">Cosmetics</a>
+        <a href="#downloads">Downloads</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#faq">FAQ</a>
+      </nav>
 
-        <a class="nav-button"
-           href="https://github.com/wemblade-alt/DARKVURS-CLIENT">
-           GitHub ↗
-        </a>
+      <div class="nav-actions">
+        <a class="btn btn-small" href="https://github.com/wemblade-alt/DARKVURS-CLIENT" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+      </div>
     </div>
-</header>
+  </header>
 
-<main>
+  <main id="top">
 
-<!-- HERO -->
+    <!-- HERO -->
 
-<section class="hero container">
-    <div>
-        <div class="eyebrow">A New Bedrock Experience</div>
+    <section class="hero container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-kicker">
+            <span class="pill planned"><i class="pill-dot"></i> In development</span>
+            <span class="eyebrow">A different Bedrock experience</span>
+          </div>
 
-        <h1>
-            OWN THE<br>
-            <span>VOID.</span>
-        </h1>
+          <h1>OWN THE<span class="line-two gradient-text">VOID.</span></h1>
 
-        <p>
-            Meet DARKVURS Client. A Minecraft Bedrock project
-            built around custom visuals, a unique interface,
-            and an evolving collection of client features.
-        </p>
+          <p class="hero-subtitle">
+            A new look. A focused interface. A world of possibilities.
+            DARKVURS is an independent Minecraft Bedrock project built around
+            a bold visual identity and a growing collection of client ideas.
+          </p>
 
-        <div class="actions">
-            <a class="button primary" href="#downloads">
-                Explore Downloads
-            </a>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#downloads">Explore downloads <span aria-hidden="true">↗</span></a>
+            <a class="btn" href="#cosmetics">Explore cosmetics <span aria-hidden="true">✦</span></a>
+          </div>
 
-            <a class="button" href="#features">
-                Discover DARKVURS
-            </a>
+          <div class="hero-meta">
+            <span>Minecraft Bedrock</span>
+            <span>Independent project</span>
+            <span>Development preview</span>
+          </div>
         </div>
 
-        <div class="hero-status">
-            MINECRAFT BEDROCK · CURRENTLY IN DEVELOPMENT
+        <div class="hero-art" aria-label="Abstract DARKVURS violet emblem illustration" role="img">
+          <div class="orb-glow"></div>
+          <div class="orb"><div class="orb-core">D</div></div>
+
+          <div class="float-card one">
+            <strong><span class="float-icon">✦</span>THE VOID COLLECTION</strong>
+            <small>Visual concepts in progress</small>
+          </div>
+
+          <div class="float-card two">
+            <strong><span class="float-icon">⌘</span>BEDROCK PROJECT</strong>
+            <small>Built for a custom experience</small>
+          </div>
         </div>
+      </div>
+
+      <div class="hero-bottom">
+        <span>DARKVURS CLIENT / 001</span>
+        <span>DESIGNED TO STAND APART</span>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Custom identity</span>
+        <span>Bedrock focused</span>
+        <span>UI concepts</span>
+        <span>Cosmetic collections</span>
+        <span>Built with intention</span>
+        <span>Custom identity</span>
+        <span>Bedrock focused</span>
+        <span>UI concepts</span>
+        <span>Cosmetic collections</span>
+      </div>
     </div>
-</section>
 
-<!-- FEATURES -->
+    <!-- FEATURES -->
 
-<section id="features">
-    <div class="container">
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">The experience</span>
+          <h2>More than a <span class="gradient-text">new look.</span></h2>
+          <p>
+            DARKVURS is being planned as a complete visual experience.
+            Explore the areas of development below. Each card is labelled
+            honestly so you can tell concepts apart from released features.
+          </p>
+        </div>
 
-        <div class="eyebrow">Built With Intention</div>
-        <h2 class="section-title">More Than A New Look.</h2>
+        <div class="grid feature-grid">
 
-        <p class="description">
-            Our goal is to create a distinctive Bedrock experience
-            with a polished visual identity and useful features.
-        </p>
+          <article class="feature-card">
+            <div class="card-top">
+              <span class="feature-icon">◈</span>
+              <span class="card-index">01 / VISUALS</span>
+            </div>
+            <h3>Custom visual identity</h3>
+            <p>A consistent DARKVURS style, with deep shadows, clean layouts, and electric-violet accents.</p>
+            <span class="pill planned"><i class="pill-dot"></i> In development</span>
+          </article>
 
-        <div class="features">
+          <article class="feature-card">
+            <div class="card-top">
+              <span class="feature-icon">▤</span>
+              <span class="card-index">02 / INTERFACE</span>
+            </div>
+            <h3>In-game client menu</h3>
+            <p>A planned menu experience using Minecraft Bedrock resource-pack UI capabilities, subject to version testing.</p>
+            <span class="pill planned"><i class="pill-dot"></i> Planned</span>
+          </article>
 
-            <article class="feature">
-                <div class="feature-number">01 / VISUALS</div>
-                <h3>Custom Identity</h3>
-                <p>
-                    A unique DARKVURS appearance with a dark
-                    interface and electric violet accents.
-                </p>
-            </article>
+          <article class="feature-card">
+            <div class="card-top">
+              <span class="feature-icon">✧</span>
+              <span class="card-index">03 / COSMETICS</span>
+            </div>
+            <h3>Cosmetic collections</h3>
+            <p>Showcase concepts for menu themes, HUD looks, and other visual customization ideas.</p>
+            <span class="pill concept"><i class="pill-dot"></i> Concept showcase</span>
+          </article>
 
-            <article class="feature">
-                <div class="feature-number">02 / INTERFACE</div>
-                <h3>Client Menu</h3>
-                <p>
-                    A planned in-game menu using Minecraft
-                    Bedrock resource-pack UI capabilities.
-                </p>
-            </article>
+          <article class="feature-card">
+            <div class="card-top">
+              <span class="feature-icon">▦</span>
+              <span class="card-index">04 / GLOBAL</span>
+            </div>
+            <h3>Global Resources goal</h3>
+            <p>The main resource pack is intended to be usable through Global Resources on supported Bedrock versions.</p>
+            <span class="pill planned"><i class="pill-dot"></i> Compatibility testing</span>
+          </article>
 
-            <article class="feature">
-                <div class="feature-number">03 / UPDATES</div>
-                <h3>Continuous Development</h3>
-                <p>
-                    New features, compatibility updates,
-                    improvements, and release announcements.
-                </p>
-            </article>
+          <article class="feature-card">
+            <div class="card-top">
+              <span class="feature-icon">⌁</span>
+              <span class="card-index">05 / PERFORMANCE</span>
+            </div>
+            <h3>Performance awareness</h3>
+            <p>Keep the pack focused and test its impact. No FPS increase is promised without measurements.</p>
+            <span class="pill planned"><i class="pill-dot"></i> Testing planned</span>
+          </article>
+
+          <article class="feature-card">
+            <div class="card-top">
+              <span class="feature-icon">↻</span>
+              <span class="card-index">06 / UPDATES</span>
+            </div>
+            <h3>Versioned releases</h3>
+            <p>Release notes will show what changed, which Minecraft versions were tested, and any known issues.</p>
+            <span class="pill planned"><i class="pill-dot"></i> Planned</span>
+          </article>
 
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- DOWNLOADS -->
+    <!-- CLIENT MENU SHOWCASE -->
 
-<section id="downloads">
-    <div class="container">
+    <section class="section section-tight" id="client">
+      <div class="container preview-layout">
 
-        <div class="eyebrow">Download Center</div>
-        <h2 class="section-title">Get The Client.</h2>
+        <div class="preview-copy">
+          <span class="eyebrow">Inside the client</span>
+          <h2>A menu that feels like <span class="gradient-text">DARKVURS.</span></h2>
 
-        <p class="description">
-            Official releases will be published here
-            once they are packaged and tested.
-        </p>
+          <p>
+            The mock interface is a design preview, not a screenshot of a
+            finished in-game menu. The goal is to make settings clear,
+            organized, and visually consistent with the rest of the project.
+          </p>
 
-        <div class="panel">
+          <ul class="check-list">
+            <li><span class="check">✓</span><span>Organized feature categories instead of a crowded menu.</span></li>
+            <li><span class="check">✓</span><span>Readable controls and clear setting descriptions.</span></li>
+            <li><span class="check">✓</span><span>Visual customization concepts that match the client identity.</span></li>
+            <li><span class="check">✓</span><span>Compatibility checks before features are listed as released.</span></li>
+          </ul>
+
+          <div style="margin-top:26px">
+            <span class="pill concept"><i class="pill-dot"></i> Interface concept</span>
+          </div>
+        </div>
+
+        <div class="mock-window" aria-label="Illustrative DARKVURS client menu preview">
+          <div class="mock-top">
+            <div class="mock-dots"><i></i><i></i><i></i></div>
+            <div class="mock-title">DARKVURS / CLIENT MENU</div>
+            <span class="tiny">PREVIEW</span>
+          </div>
+
+          <div class="mock-body">
+            <aside class="mock-sidebar">
+              <div class="mock-side-label">WORKSPACE</div>
+              <div class="mock-nav-item active">◈ Overview</div>
+              <div class="mock-nav-item">▤ Interface</div>
+              <div class="mock-nav-item">✧ Cosmetics</div>
+              <div class="mock-nav-item">⌁ Visuals</div>
+              <div class="mock-nav-item">⚙ Settings</div>
+            </aside>
+
+            <div class="mock-content">
+              <span class="eyebrow" style="font-size:8px">WELCOME BACK</span>
+              <h3>Client overview</h3>
+              <p>Your DARKVURS experience, organized.</p>
+
+              <div class="mock-feature">
+                <div>
+                  <strong>Violet interface</strong>
+                  <small>Appearance concept</small>
+                </div>
+                <span class="switch" aria-hidden="true"></span>
+              </div>
+
+              <div class="mock-feature">
+                <div>
+                  <strong>Compact HUD</strong>
+                  <small>Visual option concept</small>
+                </div>
+                <span class="switch" aria-hidden="true"></span>
+              </div>
+
+              <div class="mock-feature">
+                <div>
+                  <strong>Menu effects</strong>
+                  <small>Under consideration</small>
+                </div>
+                <span class="switch" aria-hidden="true"></span>
+              </div>
+
+              <div class="mock-note">
+                This is a website illustration. These controls are not connected to Minecraft.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COSMETICS -->
+
+    <section class="section" id="cosmetics">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">The DARKVURS Vault</span>
+          <h2>Choose your <span class="gradient-text">visual identity.</span></h2>
+          <p>
+            Explore early cosmetic ideas for the client. These are website
+            previews of possible visual packs, not downloadable or purchasable
+            items yet.
+          </p>
+        </div>
+
+        <div class="store-shell">
+
+          <div class="store-bar">
             <div>
-                <h3>Latest Stable Release</h3>
-                <p>
-                    The first verified DARKVURS .mcpack
-                    release is not available yet.
-                </p>
+              <h3>Cosmetic collection</h3>
+              <p>Browse concept themes and visual styles.</p>
             </div>
 
-            <div class="coming-soon">COMING SOON</div>
+            <div class="filter-row" role="group" aria-label="Filter cosmetic concepts">
+              <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All items</button>
+              <button class="filter-btn" type="button" data-filter="theme" aria-pressed="false">Themes</button>
+              <button class="filter-btn" type="button" data-filter="hud" aria-pressed="false">HUD</button>
+              <button class="filter-btn" type="button" data-filter="menu" aria-pressed="false">Menus</button>
+              <button class="filter-btn" type="button" data-filter="reticle" aria-pressed="false">Reticles</button>
+            </div>
+          </div>
+
+          <div class="cosmetic-grid" id="cosmeticGrid">
+
+            <article class="cosmetic-card" data-category="theme" data-name="Voidcore Theme" data-symbol="V" data-description="A deep violet and near-black interface theme concept, designed around the DARKVURS brand identity.">
+              <div class="cosmetic-art"><div class="cosmetic-symbol">V</div></div>
+              <div class="cosmetic-info">
+                <div class="cosmetic-category">Interface theme</div>
+                <h4>Voidcore Theme</h4>
+                <p>Deep violet. Dark surfaces. Clean contrast.</p>
+                <div class="cosmetic-foot">
+                  <span class="concept-label">Concept</span>
+                  <button class="btn btn-small preview-cosmetic" type="button">Preview ↗</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="cosmetic-card" data-category="hud" data-name="Glacier HUD" data-symbol="❄" data-description="A cool-toned HUD direction concept using icy blue accents and restrained contrast. Final compatibility and implementation are not confirmed.">
+              <div class="cosmetic-art"><div class="cosmetic-symbol">❄</div></div>
+              <div class="cosmetic-info">
+                <div class="cosmetic-category">HUD concept</div>
+                <h4>Glacier HUD</h4>
+                <p>Cool blue accents with a crisp, minimal feel.</p>
+                <div class="cosmetic-foot">
+                  <span class="concept-label">Concept</span>
+                  <button class="btn btn-small preview-cosmetic" type="button">Preview ↗</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="cosmetic-card" data-category="reticle" data-name="Crimson Signal" data-symbol="＋" data-description="A red-accented reticle visual concept. Actual in-game appearance and support will need to be tested in the target Bedrock version.">
+              <div class="cosmetic-art"><div class="cosmetic-symbol">＋</div></div>
+              <div class="cosmetic-info">
+                <div class="cosmetic-category">Reticle concept</div>
+                <h4>Crimson Signal</h4>
+                <p>A sharp red accent for a bold visual style.</p>
+                <div class="cosmetic-foot">
+                  <span class="concept-label">Concept</span>
+                  <button class="btn btn-small preview-cosmetic" type="button">Preview ↗</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="cosmetic-card" data-category="menu" data-name="Gold Eclipse" data-symbol="◒" data-description="A warm, gold-accented menu direction. This is an artwork and interface concept, not a released theme file.">
+              <div class="cosmetic-art"><div class="cosmetic-symbol">◒</div></div>
+              <div class="cosmetic-info">
+                <div class="cosmetic-category">Menu concept</div>
+                <h4>Gold Eclipse</h4>
+                <p>Warm metallic tones with a dark foundation.</p>
+                <div class="cosmetic-foot">
+                  <span class="concept-label">Concept</span>
+                  <button class="btn btn-small preview-cosmetic" type="button">Preview ↗</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="cosmetic-card" data-category="theme" data-name="Phantom Static" data-symbol="P" data-description="A monochrome theme direction using charcoal surfaces and subtle purple highlights. Availability is not confirmed.">
+              <div class="cosmetic-art"><div class="cosmetic-symbol">P</div></div>
+              <div class="cosmetic-info">
+                <div class="cosmetic-category">Interface theme</div>
+                <h4>Phantom Static</h4>
+                <p>Muted charcoal with understated highlights.</p>
+                <div class="cosmetic-foot">
+                  <span class="concept-label">Concept</span>
+                  <button class="btn btn-small preview-cosmetic" type="button">Preview ↗</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="cosmetic-card" data-category="hud" data-name="Nightfall HUD" data-symbol="⌁" data-description="A compact HUD layout direction with violet visual accents. No released files or performance claims are attached to this concept.">
+              <div class="cosmetic-art"><div class="cosmetic-symbol">⌁</div></div>
+              <div class="cosmetic-info">
+                <div class="cosmetic-category">HUD concept</div>
+                <h4>Nightfall HUD</h4>
+                <p>A compact, low-clutter visual direction.</p>
+                <div class="cosmetic-foot">
+                  <span class="concept-label">Concept</span>
+                  <button class="btn btn-small preview-cosmetic" type="button">Preview ↗</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="cosmetic-card" data-category="menu" data-name="Astral Menu" data-symbol="✦" data-description="A starfield-inspired menu background concept. Final implementation depends on supported resource-pack UI options.">
+              <div class="cosmetic-art"><div class="cosmetic-symbol">✦</div></div>
+              <div class="cosmetic-info">
+                <div class="cosmetic-category">Menu concept</div>
+                <h4>Astral Menu</h4>
+                <p>Space-inspired visuals and subtle glow.</p>
+                <div class="cosmetic-foot">
+                  <span class="concept-label">Concept</span>
+                  <button class="btn btn-small preview-cosmetic" type="button">Preview ↗</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="cosmetic-card" data-category="reticle" data-name="Violet Focus" data-symbol="⊕" data-description="A violet reticle direction concept designed to match the main DARKVURS palette. Actual support has not yet been verified.">
+              <div class="cosmetic-art"><div class="cosmetic-symbol">⊕</div></div>
+              <div class="cosmetic-info">
+                <div class="cosmetic-category">Reticle concept</div>
+                <h4>Violet Focus</h4>
+                <p>A focused symbol using the signature violet palette.</p>
+                <div class="cosmetic-foot">
+                  <span class="concept-label">Concept</span>
+                  <button class="btn btn-small preview-cosmetic" type="button">Preview ↗</button>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="store-disclaimer">
+            <span aria-hidden="true">ⓘ</span>
+            <span>
+              <b>Concept collection:</b> There is no active checkout, payment
+              system, or cosmetic download yet. These previews are not promises
+              that every design can be implemented in Bedrock. Release details
+              will be posted here after technical testing.
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD CENTER -->
+
+    <section class="section" id="downloads">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Official download center</span>
+          <h2>Get the <span class="gradient-text">client.</span></h2>
+          <p>
+            Only use files linked from the official DARKVURS project.
+            The first verified client package has not been published yet.
+          </p>
         </div>
 
-        <div class="actions">
-            <a class="button"
-               href="https://github.com/wemblade-alt/DARKVURS-CLIENT/releases">
-               GitHub Releases ↗
-            </a>
+        <div class="download-panel">
+          <div>
+            <span class="pill planned"><i class="pill-dot"></i> Release not published</span>
+
+            <h3 style="margin-top:15px">DARKVURS Client — First Release</h3>
+
+            <p>
+              The official Bedrock resource-pack package, supported Minecraft
+              versions, installation steps, and release notes will appear here
+              when the build is ready and tested.
+            </p>
+
+            <div class="download-links">
+              <a class="btn btn-primary" href="https://github.com/wemblade-alt/DARKVURS-CLIENT/releases" target="_blank" rel="noopener noreferrer">View GitHub releases ↗</a>
+              <a class="btn" href="https://github.com/wemblade-alt/DARKVURS-CLIENT" target="_blank" rel="noopener noreferrer">View repository ↗</a>
+            </div>
+          </div>
+
+          <div class="download-status">COMING SOON</div>
         </div>
 
-    </div>
-</section>
+        <div class="release-meta">
+          <div class="meta-box">
+            <span>Latest version</span>
+            <strong>Not released</strong>
+          </div>
+          <div class="meta-box">
+            <span>Supported versions</span>
+            <strong>To be announced</strong>
+          </div>
+          <div class="meta-box">
+            <span>Package type</span>
+            <strong>Planned .mcpack</strong>
+          </div>
+        </div>
 
-<!-- SERVER -->
+      </div>
+    </section>
 
-<section id="server">
-    <div class="container">
+    <!-- ROADMAP -->
 
-        <div class="eyebrow">Community</div>
-        <h2 class="section-title">Find Your Place.</h2>
+    <section class="section" id="roadmap">
+      <div class="container">
 
-        <div class="panel">
-            <div>
-                <h3>DARKVURS Network</h3>
-                <p>
-                    Server information and connection
-                    details will be announced here.
-                </p>
+        <div class="section-heading">
+          <span class="eyebrow">Development path</span>
+          <h2>Built in <span class="gradient-text">stages.</span></h2>
+          <p>
+            This roadmap describes project goals, not a guarantee of release
+            dates. Items move forward when they are implemented and tested.
+          </p>
+        </div>
+
+        <div class="roadmap-grid">
+
+          <article class="roadmap-card">
+            <div class="roadmap-step">STAGE 01 / FOUNDATION</div>
+            <h3>Project foundation</h3>
+            <p>Establish the resource-pack structure, visual direction, naming, and versioning approach.</p>
+            <span class="pill planned"><i class="pill-dot"></i> Development</span>
+          </article>
+
+          <article class="roadmap-card">
+            <div class="roadmap-step">STAGE 02 / INTERFACE</div>
+            <h3>UI development</h3>
+            <p>Build and validate the planned client interface against supported Bedrock versions.</p>
+            <span class="pill planned"><i class="pill-dot"></i> Planned</span>
+          </article>
+
+          <article class="roadmap-card">
+            <div class="roadmap-step">STAGE 03 / VISUALS</div>
+            <h3>Cosmetic testing</h3>
+            <p>Test theme, HUD, menu, and reticle concepts before including anything in a release.</p>
+            <span class="pill concept"><i class="pill-dot"></i> Concept stage</span>
+          </article>
+
+          <article class="roadmap-card">
+            <div class="roadmap-step">STAGE 04 / RELEASE</div>
+            <h3>Public release</h3>
+            <p>Package, document, and publish a verified build with compatibility notes and installation help.</p>
+            <span class="pill planned"><i class="pill-dot"></i> Not released</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+
+    <section class="section section-tight" id="community">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Stay connected</span>
+          <h2>Welcome to the <span class="gradient-text">community.</span></h2>
+          <p>
+            Follow the project through its official repository.
+            Community server information will be added when it is ready.
+          </p>
+        </div>
+
+        <div class="community-grid">
+
+          <article class="community-card primary-card">
+            <div class="feature-icon">⌘</div>
+            <h3>Official GitHub</h3>
+            <p>
+              Find the project repository, follow development, review published
+              releases, and report issues when the tracker is open.
+            </p>
+            <a class="btn btn-primary" href="https://github.com/wemblade-alt/DARKVURS-CLIENT" target="_blank" rel="noopener noreferrer">Visit GitHub ↗</a>
+          </article>
+
+          <article class="community-card">
+            <div class="feature-icon">◎</div>
+            <h3>DARKVURS Network</h3>
+            <p>
+              Server information, community details, and connection instructions
+              will be announced here. No server address is available yet.
+            </p>
+            <span class="pill planned"><i class="pill-dot"></i> IP: Coming soon</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ CENTER -->
+
+    <section class="section" id="faq">
+      <div class="container faq-layout">
+
+        <div class="faq-aside">
+          <span class="eyebrow">Support center</span>
+          <h2>Questions? <span class="gradient-text">Answered.</span></h2>
+
+          <p>
+            Browse the DARKVURS help center. Search by a word such as
+            “install”, “Bedrock”, “FPS”, or “cosmetics”.
+          </p>
+
+          <div class="faq-search-wrap">
+            <span aria-hidden="true">⌕</span>
+            <input
+              class="faq-search"
+              id="faqSearch"
+              type="search"
+              placeholder="Search questions..."
+              aria-label="Search frequently asked questions"
+            >
+          </div>
+
+          <p class="tiny" id="faqCount" aria-live="polite" style="margin-top:10px">
+            Showing all questions.
+          </p>
+        </div>
+
+        <div>
+          <div class="faq-groups" id="faqGroups">
+
+            <!-- FAQ 01 -->
+
+            <div class="faq-group">
+              <h3 class="faq-group-title">01 / About DARKVURS</h3>
+
+              <details class="faq-item">
+                <summary>What is DARKVURS Client?</summary>
+                <div class="faq-answer">
+                  DARKVURS Client is an independent Minecraft Bedrock project
+                  focused on custom visuals, interface design, and a distinctive
+                  client-style experience.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Is DARKVURS a full hacked client?</summary>
+                <div class="faq-answer">
+                  The project is being presented as a resource-pack and
+                  interface-focused experience. The website does not promise
+                  cheats, exploits, or gameplay advantages.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Is DARKVURS available right now?</summary>
+                <div class="faq-answer">
+                  The website is live, but the first verified .mcpack release
+                  has not been published. Check the Download Center for the
+                  current release status.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Is DARKVURS for Minecraft Java Edition?</summary>
+                <div class="faq-answer">
+                  No. The project is focused on Minecraft Bedrock Edition.
+                  A Java Edition version has not been announced.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Is DARKVURS affiliated with Mojang or Microsoft?</summary>
+                <div class="faq-answer">
+                  No. DARKVURS is an independent community project and is not
+                  affiliated with, endorsed by, or sponsored by Mojang or Microsoft.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Is the website the official place for updates?</summary>
+                <div class="faq-answer">
+                  Yes. Use this website and the
+                  <a href="https://github.com/wemblade-alt/DARKVURS-CLIENT" target="_blank" rel="noopener noreferrer">official GitHub repository</a>
+                  for project information and links to releases.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Does DARKVURS cost money?</summary>
+                <div class="faq-answer">
+                  There is no purchase or checkout available on this website.
+                  Any future pricing or distribution details would be clearly
+                  announced before a release. Do not pay unofficial sellers
+                  claiming to offer DARKVURS.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Do I need an account to browse the website?</summary>
+                <div class="faq-answer">
+                  No. You can browse this static project website without
+                  creating a DARKVURS account. GitHub may ask you to sign
+                  in for some GitHub actions.
+                </div>
+              </details>
             </div>
 
-            <div class="coming-soon">IP: COMING SOON</div>
+            <!-- FAQ 02 -->
+
+            <div class="faq-group">
+              <h3 class="faq-group-title">02 / Compatibility</h3>
+
+              <details class="faq-item">
+                <summary>Which Minecraft Bedrock versions are supported?</summary>
+                <div class="faq-answer">
+                  Exact supported versions have not been confirmed.
+                  Each official release will list the Minecraft versions
+                  on which it was tested.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will it work on Windows?</summary>
+                <div class="faq-answer">
+                  Windows Bedrock is a target platform, but compatibility
+                  will be confirmed in the release notes after testing.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will it work on Xbox, PlayStation, or Switch?</summary>
+                <div class="faq-answer">
+                  Console installation and resource-pack restrictions can
+                  differ from Windows and mobile. Console support is not
+                  guaranteed; the release guide will identify tested platforms.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will it work on Android and iOS?</summary>
+                <div class="faq-answer">
+                  Mobile support depends on the pack contents, Minecraft version,
+                  and platform import process. Tested mobile versions will be
+                  listed after validation.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I use it on servers or Realms?</summary>
+                <div class="faq-answer">
+                  That depends on the server or Realm settings, resource-pack
+                  requirements, and the particular features in a release.
+                  Follow the server rules and check compatibility notes.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can other players see my resource-pack changes?</summary>
+                <div class="faq-answer">
+                  Most resource-pack visual changes are local to the player
+                  using the pack. Other players generally need the same assets
+                  enabled to see those changes. Server-managed packs may behave differently.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I use DARKVURS with other resource packs?</summary>
+                <div class="faq-answer">
+                  Possibly. Packs that edit the same textures or UI files can
+                  override one another. The final guide will include known
+                  conflicts where they have been tested.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will a Minecraft update break the client?</summary>
+                <div class="faq-answer">
+                  It may. Bedrock updates can change resource and UI behavior.
+                  Check the compatibility notes before updating or using an
+                  older pack version.
+                </div>
+              </details>
+            </div>
+
+            <!-- FAQ 03 -->
+
+            <div class="faq-group">
+              <h3 class="faq-group-title">03 / Installation & Downloads</h3>
+
+              <details class="faq-item">
+                <summary>How do I download DARKVURS?</summary>
+                <div class="faq-answer">
+                  When a verified release is ready, use the Download Center or
+                  the <a href="https://github.com/wemblade-alt/DARKVURS-CLIENT/releases" target="_blank" rel="noopener noreferrer">official GitHub Releases page</a>.
+                  There is no official .mcpack download yet.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>What is an .mcpack file?</summary>
+                <div class="faq-answer">
+                  An .mcpack file is a packaged Minecraft Bedrock resource
+                  pack or related pack that Minecraft can import on supported devices.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>How will I install the pack?</summary>
+                <div class="faq-answer">
+                  The release will include step-by-step import instructions
+                  for each supported platform. The exact steps can differ
+                  between Windows, mobile, and consoles.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I activate it through Global Resources?</summary>
+                <div class="faq-answer">
+                  Global Resources activation is a project goal for the main
+                  resource pack. The final guide will confirm whether the
+                  released build supports it on the specified Bedrock versions.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>What if the pack does not import?</summary>
+                <div class="faq-answer">
+                  Confirm that you downloaded the official file, the download
+                  completed, the file was not renamed incorrectly, and your
+                  Minecraft version is supported. Use the release guide for
+                  platform-specific troubleshooting.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>What if the pack does not appear in Global Resources?</summary>
+                <div class="faq-answer">
+                  Check that Minecraft imported the pack successfully and that
+                  you are viewing the correct resource-pack list. Some platforms
+                  or pack types may have different activation limits.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>How do I update to a newer version?</summary>
+                <div class="faq-answer">
+                  Download the latest official release and follow its update
+                  instructions. The release notes will say whether an older
+                  version should be removed first.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Where can I find older versions?</summary>
+                <div class="faq-answer">
+                  When releases are published, their version history will be
+                  available through the official GitHub Releases page.
+                </div>
+              </details>
+            </div>
+
+            <!-- FAQ 04 -->
+
+            <div class="faq-group">
+              <h3 class="faq-group-title">04 / Features & Performance</h3>
+
+              <details class="faq-item">
+                <summary>Will DARKVURS have an in-game menu?</summary>
+                <div class="faq-answer">
+                  An in-game menu is part of the development plan. It is not
+                  being advertised as complete. The final feature list will
+                  describe what is actually implemented.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will the menu work in every Minecraft screen?</summary>
+                <div class="faq-answer">
+                  Not necessarily. Bedrock UI customization has technical limits
+                  and can vary by version. Supported screens will be listed only after testing.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will DARKVURS increase my FPS?</summary>
+                <div class="faq-answer">
+                  No FPS boost is promised. Performance depends on your device,
+                  Minecraft settings, and pack contents. Any performance claims
+                  should be based on repeatable testing.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will it make Minecraft look better?</summary>
+                <div class="faq-answer">
+                  The project aims to provide a distinctive visual style.
+                  Whether you prefer the look is subjective, and the final
+                  visuals will be shown in release previews.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Does a resource pack run JavaScript?</summary>
+                <div class="faq-answer">
+                  A resource pack by itself does not run JavaScript Script API code.
+                  Script-based features require a behavior pack and the appropriate
+                  world or platform support.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will it include custom sounds?</summary>
+                <div class="faq-answer">
+                  Custom audio is a possible resource-pack area, but it has not
+                  been confirmed for the first release. Any included audio will
+                  be listed in the release notes.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will it include animations?</summary>
+                <div class="faq-answer">
+                  Some visual animation concepts may be explored, but availability
+                  depends on what Bedrock resource packs can support reliably.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will every planned feature be in the first release?</summary>
+                <div class="faq-answer">
+                  No guarantee. Features will be included only when they are
+                  implemented and tested. The roadmap is a development direction,
+                  not a release promise.
+                </div>
+              </details>
+            </div>
+
+            <!-- FAQ 05 -->
+
+            <div class="faq-group">
+              <h3 class="faq-group-title">05 / Cosmetics & Store</h3>
+
+              <details class="faq-item">
+                <summary>What are DARKVURS cosmetics?</summary>
+                <div class="faq-answer">
+                  They are visual customization concepts, such as interface
+                  themes, HUD styles, menu looks, and reticle designs.
+                  The collection shown on this website is a preview of ideas.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I download a cosmetic from the Vault?</summary>
+                <div class="faq-answer">
+                  Not yet. The Vault currently displays concepts only.
+                  No cosmetic files are available to download.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I buy cosmetics on this website?</summary>
+                <div class="faq-answer">
+                  No. There is no payment or checkout system on this website.
+                  The Preview buttons only open information about each concept.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Are the cosmetics compatible with every device?</summary>
+                <div class="faq-answer">
+                  Compatibility has not been confirmed. Each future cosmetic
+                  release will need its own platform and version testing.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I equip multiple cosmetics at once?</summary>
+                <div class="faq-answer">
+                  That depends on how the final pack is structured and whether
+                  visual options overlap. No loadout or equip system is available yet.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Will more cosmetics be added?</summary>
+                <div class="faq-answer">
+                  More concepts may be added as the visual direction develops.
+                  New concepts will not be described as released items until
+                  actual files are available.
+                </div>
+              </details>
+            </div>
+
+            <!-- FAQ 06 -->
+
+            <div class="faq-group">
+              <h3 class="faq-group-title">06 / Safety, Support & Rules</h3>
+
+              <details class="faq-item">
+                <summary>Where should I report a bug?</summary>
+                <div class="faq-answer">
+                  Use the <a href="https://github.com/wemblade-alt/DARKVURS-CLIENT/issues" target="_blank" rel="noopener noreferrer">GitHub Issues page</a>
+                  when issue reporting is available. Include your device,
+                  Minecraft version, pack version, and clear steps to reproduce the issue.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>How can I suggest a feature?</summary>
+                <div class="faq-answer">
+                  Share a feature idea through the repository's issue tracker
+                  when available. Describe what it should do and which
+                  Minecraft platform you use.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Where can I see official updates?</summary>
+                <div class="faq-answer">
+                  Check this website and the
+                  <a href="https://github.com/wemblade-alt/DARKVURS-CLIENT" target="_blank" rel="noopener noreferrer">DARKVURS GitHub repository</a>.
+                  Release notes will be linked from the Download Center.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Is there a DARKVURS Discord server?</summary>
+                <div class="faq-answer">
+                  No verified Discord invite has been published on this site.
+                  Server and community links will be added here if an official
+                  community space is created.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>What is the DARKVURS Network IP?</summary>
+                <div class="faq-answer">
+                  The server IP has not been announced. The Community section
+                  currently shows “IP: Coming soon”.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>How do I know a download is official?</summary>
+                <div class="faq-answer">
+                  Use links on this website that point to the official GitHub
+                  repository or its Releases page. Be cautious with reuploads,
+                  shortened links, and websites asking you to install unrelated software.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Does DARKVURS collect my personal information?</summary>
+                <div class="faq-answer">
+                  This page is a static website and contains no account registration,
+                  payment checkout, or contact form. GitHub handles its own
+                  services and privacy practices when you follow GitHub links.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I reupload or redistribute DARKVURS?</summary>
+                <div class="faq-answer">
+                  Please do not reupload, rebrand, or present modified copies as
+                  official DARKVURS releases without permission. The project owner
+                  reserves their rights in original project materials; this notice
+                  is not a substitute for formal legal advice.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I help with development?</summary>
+                <div class="faq-answer">
+                  The project may accept suggestions and contributions in the future.
+                  Check the repository for contribution instructions before sending code or assets.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>What if my question is not listed?</summary>
+                <div class="faq-answer">
+                  Check the <a href="https://github.com/wemblade-alt/DARKVURS-CLIENT" target="_blank" rel="noopener noreferrer">official repository</a>
+                  for project information. You can also suggest a new FAQ
+                  question through the issue tracker when available.
+                </div>
+              </details>
+            </div>
+
+          </div>
+
+          <div class="no-results" id="faqNoResults">
+            No matching questions. Try another search term.
+          </div>
         </div>
 
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- FAQ -->
+  </main>
 
-<section id="faq">
+  <!-- FOOTER -->
+
+  <footer class="footer">
     <div class="container">
 
-        <div class="eyebrow">Need To Know</div>
-        <h2 class="section-title">Frequently Asked Questions.</h2>
+      <div class="footer-top">
 
-        <div class="faq-item">
-            <h3>Is DARKVURS ready to install?</h3>
-            <p>
-                The project is still in development.
-                Official installation files will be
-                published after testing.
-            </p>
+        <div class="footer-brand">
+          <a class="brand" href="#top">
+            <span class="brand-mark">D</span>
+            <span class="brand-name">DARK<span>VURS</span></span>
+          </a>
+
+          <p>
+            An independent Minecraft Bedrock project.
+            Own the void. Make the experience yours.
+          </p>
         </div>
 
-        <div class="faq-item">
-            <h3>How will I install it?</h3>
-            <p>
-                Installation instructions will explain
-                how to import the .mcpack and activate
-                it through Global Resources, if supported.
-            </p>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#features">Features</a>
+          <a href="#client">Client preview</a>
+          <a href="#cosmetics">Cosmetics Vault</a>
+          <a href="#roadmap">Roadmap</a>
         </div>
 
-        <div class="faq-item">
-            <h3>Is DARKVURS affiliated with Mojang?</h3>
-            <p>
-                No. DARKVURS is an independent project
-                and is not affiliated with or endorsed
-                by Mojang or Microsoft.
-            </p>
+        <div class="footer-col">
+          <h4>Official links</h4>
+          <a href="#downloads">Download center</a>
+          <a href="#faq">Help center</a>
+          <a href="https://github.com/wemblade-alt/DARKVURS-CLIENT" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>
+          <a href="https://github.com/wemblade-alt/DARKVURS-CLIENT/releases" target="_blank" rel="noopener noreferrer">GitHub releases ↗</a>
         </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> DARKVURS Client. All rights reserved.</span>
+        <span>Independent project · Minecraft Bedrock focused</span>
+      </div>
+
+      <p class="disclaimer">
+        DARKVURS is not affiliated with, endorsed by, or sponsored by Mojang
+        or Microsoft. Minecraft is a trademark of its respective owner.
+        Product names and visual concepts on this page are project descriptions
+        and do not imply that unreleased features are available.
+      </p>
 
     </div>
-</section>
+  </footer>
 
-</main>
+  <!-- COSMETIC PREVIEW MODAL -->
 
-<footer class="container">
-    <span>© 2026 DARKVURS Client. All rights reserved.</span>
-    <span>Independent Minecraft Bedrock Project.</span>
-</footer>
+  <div class="modal-backdrop" id="cosmeticModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close preview">×</button>
+
+      <div class="modal-art">
+        <span id="modalSymbol">✦</span>
+      </div>
+
+      <span class="eyebrow">Vault concept preview</span>
+      <h3 id="modalTitle">Cosmetic title</h3>
+      <p id="modalDescription">Concept details will appear here.</p>
+
+      <span class="pill concept"><i class="pill-dot"></i> Not released</span>
+
+      <p class="tiny" style="margin-bottom:0">
+        This preview is not a download or purchase.
+      </p>
+
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+    (() => {
+      const nav = document.getElementById('siteNav');
+      const menuToggle = document.getElementById('menuToggle');
+      const modal = document.getElementById('cosmeticModal');
+      const modalClose = document.getElementById('modalClose');
+      const toast = document.getElementById('toast');
+
+      let toastTimer;
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+
+        window.clearTimeout(toastTimer);
+
+        toastTimer = window.setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2800);
+      }
+
+      /* Mobile navigation */
+
+      menuToggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+
+        menuToggle.setAttribute(
+          'aria-label',
+          isOpen ? 'Close navigation' : 'Open navigation'
+        );
+
+        menuToggle.textContent = isOpen ? '×' : '☰';
+      });
+
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('open');
+
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.setAttribute('aria-label', 'Open navigation');
+          menuToggle.textContent = '☰';
+        });
+      });
+
+      /* Cosmetic filters */
+
+      const filterButtons = document.querySelectorAll('[data-filter]');
+      const cosmeticCards = document.querySelectorAll('.cosmetic-card');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const filter = button.dataset.filter;
+
+          filterButtons.forEach(item => {
+            const active = item === button;
+
+            item.classList.toggle('active', active);
+            item.setAttribute('aria-pressed', String(active));
+          });
+
+          cosmeticCards.forEach(card => {
+            card.hidden = filter !== 'all' && card.dataset.category !== filter;
+          });
+        });
+      });
+
+      /* Cosmetic concept preview modal */
+
+      document.querySelectorAll('.preview-cosmetic').forEach(button => {
+        button.addEventListener('click', () => {
+          const card = button.closest('.cosmetic-card');
+
+          document.getElementById('modalTitle').textContent = card.dataset.name;
+          document.getElementById('modalDescription').textContent = card.dataset.description;
+          document.getElementById('modalSymbol').textContent = card.dataset.symbol;
+
+          modal.classList.add('open');
+          modalClose.focus();
+        });
+      });
+
+      function closeModal() {
+        modal.classList.remove('open');
+      }
+
+      modalClose.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', event => {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeModal();
+        }
+      });
+
+      /* Search FAQ questions and answers */
+
+      const faqSearch = document.getElementById('faqSearch');
+      const faqItems = Array.from(document.querySelectorAll('.faq-item'));
+      const faqGroups = Array.from(document.querySelectorAll('.faq-group'));
+      const faqCount = document.getElementById('faqCount');
+      const noResults = document.getElementById('faqNoResults');
+
+      faqSearch.addEventListener('input', () => {
+        const query = faqSearch.value.trim().toLowerCase();
+
+        let visible = 0;
+
+        faqItems.forEach(item => {
+          const matches = !query || item.textContent.toLowerCase().includes(query);
+
+          item.hidden = !matches;
+
+          if (matches) {
+            visible++;
+          }
+        });
+
+        faqGroups.forEach(group => {
+          const hasVisibleItems = Array.from(
+            group.querySelectorAll('.faq-item')
+          ).some(item => !item.hidden);
+
+          group.hidden = !hasVisibleItems;
+        });
+
+        noResults.classList.toggle('show', visible === 0);
+
+        faqCount.textContent = query
+          ? `Showing ${visible} of ${faqItems.length} questions.`
+          : `Showing all ${faqItems.length} questions.`;
+      });
+
+      /* Automatic copyright year */
+
+      document.getElementById('year').textContent =
+        String(new Date().getFullYear());
+
+    })();
+  </script>
 
 </body>
 </html>
