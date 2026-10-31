@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080611">
+<title>DARKVURS Client | Own the Void</title>
+
+<style>
+:root {
+    --bg: #080611;
+    --panel: #130d20;
+    --purple: #9b55ff;
+    --light: #c49aff;
+    --text: #f5efff;
+    --muted: #aaa0ba;
+    --border: #342047;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(ellipse at 75% 0%, #351653 0%, transparent 38%),
+        var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1120px, 90%);
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8, 6, 17, .92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #ffffff12;
+}
+
+.navbar {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 950;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: var(--purple);
+}
+
+nav {
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+nav a:hover {
+    color: white;
+}
+
+.nav-button,
+.button {
+    padding: 11px 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    transition: .2s;
+}
+
+.nav-button:hover,
+.button:hover {
+    border-color: var(--purple);
+    transform: translateY(-2px);
+}
+
+.primary {
+    background: linear-gradient(120deg, #a65cff, #7135cb);
+    border: none;
+    color: white;
+    box-shadow: 0 8px 28px #8a40e944;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 610px;
+    display: flex;
+    align-items: center;
+    padding: 100px 0;
+}
+
+.eyebrow {
+    color: var(--light);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(53px, 9vw, 95px);
+    line-height: .98;
+    letter-spacing: -5px;
+    margin: 20px 0;
+}
+
+.hero h1 span {
+    color: var(--purple);
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 18px;
+    max-width: 620px;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 30px;
+}
+
+.hero-status {
+    color: #9386a5;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 35px;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 85px 0;
+    border-top: 1px solid #ffffff12;
+}
+
+.section-title {
+    font-size: clamp(32px, 5vw, 48px);
+    letter-spacing: -2px;
+    margin: 10px 0;
+}
+
+.description {
+    color: var(--muted);
+    max-width: 650px;
+}
+
+/* FEATURES */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 35px;
+}
+
+.feature {
+    background: linear-gradient(145deg, #191126, #0f0b18);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 27px;
+    min-height: 190px;
+    transition: .25s;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    border-color: var(--purple);
+}
+
+.feature-number {
+    color: var(--purple);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.feature h3 {
+    margin: 16px 0 8px;
+    font-size: 20px;
+}
+
+.feature p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* DOWNLOADS + SERVER */
+
+.panel {
+    margin-top: 28px;
+    padding: 32px;
+    background: linear-gradient(120deg, #241437, #120c1c);
+    border: 1px solid #523273;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+}
+
+.panel p {
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+.coming-soon {
+    color: var(--light);
+    font-weight: 900;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+/* FAQ */
+
+.faq-item {
+    padding: 22px 0;
+    border-top: 1px solid var(--border);
+}
+
+.faq-item p {
+    color: var(--muted);
+    margin-top: 7px;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid #ffffff12;
+    padding: 30px 0;
+    color: #9489a2;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* MOBILE */
+
+@media (max-width: 750px) {
+    nav {
+        display: none;
+    }
+
+    .hero {
+        min-height: 0;
+        padding: 100px 0;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container navbar">
+        <a class="logo" href="#">DARK<span>VURS</span></a>
+
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#downloads">Downloads</a>
+            <a href="#server">Server</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+
+        <a class="nav-button"
+           href="https://github.com/wemblade-alt/DARKVURS-CLIENT">
+           GitHub ↗
+        </a>
+    </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero container">
+    <div>
+        <div class="eyebrow">A New Bedrock Experience</div>
+
+        <h1>
+            OWN THE<br>
+            <span>VOID.</span>
+        </h1>
+
+        <p>
+            Meet DARKVURS Client. A Minecraft Bedrock project
+            built around custom visuals, a unique interface,
+            and an evolving collection of client features.
+        </p>
+
+        <div class="actions">
+            <a class="button primary" href="#downloads">
+                Explore Downloads
+            </a>
+
+            <a class="button" href="#features">
+                Discover DARKVURS
+            </a>
+        </div>
+
+        <div class="hero-status">
+            MINECRAFT BEDROCK · CURRENTLY IN DEVELOPMENT
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+
+<section id="features">
+    <div class="container">
+
+        <div class="eyebrow">Built With Intention</div>
+        <h2 class="section-title">More Than A New Look.</h2>
+
+        <p class="description">
+            Our goal is to create a distinctive Bedrock experience
+            with a polished visual identity and useful features.
+        </p>
+
+        <div class="features">
+
+            <article class="feature">
+                <div class="feature-number">01 / VISUALS</div>
+                <h3>Custom Identity</h3>
+                <p>
+                    A unique DARKVURS appearance with a dark
+                    interface and electric violet accents.
+                </p>
+            </article>
+
+            <article class="feature">
+                <div class="feature-number">02 / INTERFACE</div>
+                <h3>Client Menu</h3>
+                <p>
+                    A planned in-game menu using Minecraft
+                    Bedrock resource-pack UI capabilities.
+                </p>
+            </article>
+
+            <article class="feature">
+                <div class="feature-number">03 / UPDATES</div>
+                <h3>Continuous Development</h3>
+                <p>
+                    New features, compatibility updates,
+                    improvements, and release announcements.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- DOWNLOADS -->
+
+<section id="downloads">
+    <div class="container">
+
+        <div class="eyebrow">Download Center</div>
+        <h2 class="section-title">Get The Client.</h2>
+
+        <p class="description">
+            Official releases will be published here
+            once they are packaged and tested.
+        </p>
+
+        <div class="panel">
+            <div>
+                <h3>Latest Stable Release</h3>
+                <p>
+                    The first verified DARKVURS .mcpack
+                    release is not available yet.
+                </p>
+            </div>
+
+            <div class="coming-soon">COMING SOON</div>
+        </div>
+
+        <div class="actions">
+            <a class="button"
+               href="https://github.com/wemblade-alt/DARKVURS-CLIENT/releases">
+               GitHub Releases ↗
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- SERVER -->
+
+<section id="server">
+    <div class="container">
+
+        <div class="eyebrow">Community</div>
+        <h2 class="section-title">Find Your Place.</h2>
+
+        <div class="panel">
+            <div>
+                <h3>DARKVURS Network</h3>
+                <p>
+                    Server information and connection
+                    details will be announced here.
+                </p>
+            </div>
+
+            <div class="coming-soon">IP: COMING SOON</div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FAQ -->
+
+<section id="faq">
+    <div class="container">
+
+        <div class="eyebrow">Need To Know</div>
+        <h2 class="section-title">Frequently Asked Questions.</h2>
+
+        <div class="faq-item">
+            <h3>Is DARKVURS ready to install?</h3>
+            <p>
+                The project is still in development.
+                Official installation files will be
+                published after testing.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <h3>How will I install it?</h3>
+            <p>
+                Installation instructions will explain
+                how to import the .mcpack and activate
+                it through Global Resources, if supported.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Is DARKVURS affiliated with Mojang?</h3>
+            <p>
+                No. DARKVURS is an independent project
+                and is not affiliated with or endorsed
+                by Mojang or Microsoft.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="container">
+    <span>© 2026 DARKVURS Client. All rights reserved.</span>
+    <span>Independent Minecraft Bedrock Project.</span>
+</footer>
+
+</body>
+</html>
